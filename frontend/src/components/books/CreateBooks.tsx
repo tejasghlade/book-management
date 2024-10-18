@@ -14,7 +14,7 @@ const CreateBooks: React.FC<CreateBooksProps> = ({ closeModal, fetchBooks }) => 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/books', {
+      const response = await axios.post('http://localhost:3000/api/books', {
         title,
         author,
         description,

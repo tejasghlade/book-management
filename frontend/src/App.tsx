@@ -29,7 +29,7 @@ const App: React.FC = () => {
   const fetchBooks = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3000/books', {
+      const response = await axios.get('http://localhost:3000/api/books', {
         params: { page, limit, search: filter },
       });
       setBooks(response.data.data);

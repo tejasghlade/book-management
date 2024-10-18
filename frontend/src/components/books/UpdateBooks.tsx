@@ -31,7 +31,7 @@ const UpdateBook: React.FC<UpdateBookProps> = ({ book, closeModal, fetchBooks })
     e.preventDefault();
     if (book) {
       try {
-        const response = await axios.put(`http://localhost:3000/books/${book.id}`, {
+        const response = await axios.put(`http://localhost:3000/api/books/${book.id}`, {
           title,
           author,
           description,
