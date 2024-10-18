@@ -26,8 +26,11 @@ let BooksService = class BooksService {
         return this.bookRepository.save(book);
     }
     async findAll(page, limit, search) {
+        const whereClause = search
+            ? [{ title: (0, typeorm_2.Like)(`%${search}%`) }, { author: (0, typeorm_2.Like)(`%${search}%`) }]
+            : {};
         const [data, count] = await this.bookRepository.findAndCount({
-            where: search ? { title: (0, typeorm_2.Like)(`%${search}%`) } : {},
+            where: whereClause,
             skip: (page - 1) * limit,
             take: limit,
         });

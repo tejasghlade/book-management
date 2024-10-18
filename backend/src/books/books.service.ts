@@ -23,8 +23,12 @@ export class BooksService {
     limit: number,
     search: string,
   ): Promise<{ data: Book[]; count: number }> {
+    const whereClause = search
+      ? [{ title: Like(`%${search}%`) }, { author: Like(`%${search}%`) }]
+      : {};
+
     const [data, count] = await this.bookRepository.findAndCount({
-      where: search ? { title: Like(`%${search}%`) } : {},
+      where: whereClause,
       skip: (page - 1) * limit,
       take: limit,
     });

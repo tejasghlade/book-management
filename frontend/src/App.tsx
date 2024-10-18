@@ -61,7 +61,7 @@ const App: React.FC = () => {
   const handleDeleteBook = async () => {
     if (bookToDelete) {
       try {
-        await axios.delete(`http://localhost:3000/books/${bookToDelete.id}`);
+        await axios.delete(`http://localhost:3000/api/books/${bookToDelete.id}`);
         fetchBooks();
         closeDeleteConfirm();
       } catch (error) {
@@ -88,7 +88,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-5 flex flex-col justify-start items-center">
       <div className='flex w-full justify-between max-w-screen-xl'>
-        <h2 className="text-2xl font-bold mb-5">List of Books</h2>
+        <h2 className="text-2xl font-bold mb-5">Books Management</h2>
         <button
           onClick={openModal}
           className="mb-5 px-4 py-2 bg-blue-600 text-white rounded-md"
