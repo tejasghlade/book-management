@@ -9,6 +9,14 @@ This project is a monorepo containing both a frontend and a backend. The fronten
 
 ## Getting Started
 
+### Features
+- Create a books
+- Update a book
+- Delete a book
+- List all books
+- Filter books by title and author
+- pagination
+
 ### Installation
 <!-- install the node modules -->
 ```bash
