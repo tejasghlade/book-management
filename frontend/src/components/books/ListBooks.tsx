@@ -33,10 +33,10 @@ const ListBooks: React.FC<ListBooksProps> = ({ books, loading, error, handleDele
   };
 
   return (
-    <div className="max-w-7xl mx-auto mt-10">
+    <div className="max-w-7xl mx-auto mt-10 h-[70vh] flex flex-col justify-between">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {books.map((book) => (
-          <div key={book.id} className="border p-4 rounded-md shadow-sm flex flex-col justify-between">
+          <div key={book.id} className="w-[25rem]  border p-4 rounded-md shadow-sm flex flex-col justify-between">
             <div className='flex justify-between items-start'>
               <div>
                 <h3 className="text-lg font-bold">{book.title}</h3>
@@ -62,10 +62,10 @@ const ListBooks: React.FC<ListBooksProps> = ({ books, loading, error, handleDele
         ))}
       </div>
       <div className="mt-5 flex justify-between">
-        <button
+      <button
           onClick={() => onPageChange(currentPage > 1 ? currentPage - 1 : 1)}
           disabled={currentPage === 1}
-          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md"
+          className={`px-4 py-2 rounded-md ${currentPage === 1 ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 text-gray-700'}`}
         >
           Previous
         </button>
@@ -73,7 +73,7 @@ const ListBooks: React.FC<ListBooksProps> = ({ books, loading, error, handleDele
         <button
           onClick={() => onPageChange(currentPage < totalPages ? currentPage + 1 : totalPages)}
           disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md"
+          className={`px-4 py-2 rounded-md ${currentPage === totalPages ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-gray-300 text-gray-700'}`}
         >
           Next
         </button>

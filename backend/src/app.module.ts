@@ -1,21 +1,23 @@
 // src/app.module.ts
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Book } from './books/book.entity';
 import { BooksModule } from './books/books.module';
+import { Book } from './books/book.entity';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
-      type: 'postgres', // or 'mysql'
-      host: 'localhost',
-      port: 5432, // or 3306 for MySQL
-      username: 'tejas',
-      password: 'tejas@1234',
-      database: 'book',
+      type: 'postgres',
+      url: process.env.POSTGRES_URL, // Use the environment variable for the connection URL
       entities: [Book],
       synchronize: true,
-      logging: true,
+      ssl: process.env.POSTGRES_URL.includes('sslmode=require')
+        ? { rejectUnauthorized: false }
+        : false,
     }),
     BooksModule,
   ],

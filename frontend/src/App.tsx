@@ -24,7 +24,7 @@ const App: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [limit] = useState<number>(9);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const [filter, setFilter] = useState<{ author?: string; title?: string }>({});
+  const [filter, setFilter] = useState<string>('');
 
   const fetchBooks = useCallback(async () => {
     setLoading(true);
@@ -81,7 +81,7 @@ const App: React.FC = () => {
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter({ ...filter, [e.target.name]: e.target.value });
+    setFilter(e.target.value);
   };
 
 
@@ -100,16 +100,8 @@ const App: React.FC = () => {
         <input
           type="text"
           name="author"
-          placeholder="Filter by author"
-          value={filter.author || ''}
-          onChange={handleFilterChange}
-          className="px-3 py-2 border border-gray-300 rounded-md"
-        />
-        <input
-          type="text"
-          name="title"
-          placeholder="Filter by title"
-          value={filter.title || ''}
+          placeholder="Filter by title and author"
+          value={filter}
           onChange={handleFilterChange}
           className="px-3 py-2 border border-gray-300 rounded-md"
         />
